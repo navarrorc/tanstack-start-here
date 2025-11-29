@@ -1,0 +1,23 @@
+{
+  "projectName": "invite-auth-app",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "pnpm",
+  "mode": "file-router",
+  "addOnOptions": {
+    "drizzle": {
+      "database": "postgresql"
+    }
+  },
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "start",
+    "neon",
+    "drizzle",
+    "tanstack-query",
+    "shadcn",
+    "t3env"
+  ]
+}
