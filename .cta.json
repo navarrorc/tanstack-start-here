@@ -1,5 +1,5 @@
 {
-  "projectName": "invite-auth-app",
+  "projectName": "tanstack-start-here",
   "typescript": true,
   "tailwind": true,
   "packageManager": "pnpm",

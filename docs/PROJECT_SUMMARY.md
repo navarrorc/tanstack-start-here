@@ -1,8 +1,10 @@
-# Invite-Based Authentication App - Project Summary
+# TanStack Start Starter Template - Project Summary
 
 ## Overview
 
-A full-stack authentication application built with TanStack Start, featuring Google OAuth login and an invite code system. The first user to sign up automatically becomes an administrator who can then invite other users via email-specific invite codes.
+A production-ready starter template for building full-stack applications with TanStack Start. This template provides a complete authentication system with Google OAuth and invite-based user management, giving you a solid foundation to build your application on top of.
+
+**This is designed to be cloned and customized for new projects.**
 
 ## Tech Stack
 
@@ -221,9 +223,17 @@ GOOGLE_REDIRECT_URI=http://localhost:3000/api/auth/callback/google
    - Tokens validated with Google
    - User info fetched from Google's API
 
-## Future Enhancements
+## Extending This Template
 
-Potential features to add:
+This starter template is designed to be customized. Here are common ways to extend it:
+
+### Add Your Business Logic
+- Create new database tables in `src/db/schema.ts`
+- Add server functions in `src/lib/server-functions.ts`
+- Build new routes in `src/routes/`
+- Create reusable components in `src/components/`
+
+### Optional Enhancements
 - Email notifications when invite codes are generated
 - Invite code expiration dates
 - Bulk invite generation
@@ -231,10 +241,16 @@ Potential features to add:
 - Activity logs
 - Team/organization support
 - Role-based permissions beyond admin/user
-- Password reset flow
 - Two-factor authentication
 - API rate limiting
 - Invite code usage analytics
+
+### Example Use Cases
+- **SaaS Dashboard**: Add subscription management, billing, feature flags
+- **Internal Tool**: Add your business workflows, data management
+- **Content Platform**: Add posts, comments, media uploads
+- **E-commerce**: Add products, cart, checkout
+- **Social App**: Add profiles, posts, connections
 
 ## Troubleshooting
 
@@ -278,6 +294,15 @@ pnpm db:studio    # Open Drizzle Studio
 pnpm test
 ```
 
+## Using This Template
+
+1. **Clone or fork this repository**
+2. **Update environment variables** with your credentials
+3. **Push the database schema** with `pnpm db:push`
+4. **Start building** your unique features on top of this foundation
+
+The authentication, session management, and invite system are production-ready. Focus on building what makes your application unique!
+
 ## License
 
-Private project - All rights reserved
+MIT License - Free to use for any project

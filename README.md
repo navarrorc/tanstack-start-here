@@ -1,15 +1,18 @@
-# Invite-Based Authentication App
+# TanStack Start Starter Template
 
-A full-stack authentication system with Google OAuth, invite codes, and admin dashboard built with TanStack Start and NeonDB.
+A production-ready starter template for building full-stack applications with TanStack Start. Includes Google OAuth authentication, invite system, and a clean foundation to build upon.
+
+**Use this as a starting point for your next project!**
 
 ## 🚀 Features
 
 - 🔐 **Google OAuth Login** - Secure authentication with Google
-- 📧 **Invite Code System** - Email-specific, single-use invite codes
+- 📧 **Invite Code System** - Email-specific, single-use invite codes for controlled access
 - 👑 **Auto Admin** - First user automatically becomes admin
-- 🎨 **Modern UI** - Beautiful dashboard with TailwindCSS
+- 🎨 **Modern UI** - Beautiful, minimal dashboard with TailwindCSS
 - 🗄️ **NeonDB** - Serverless PostgreSQL database
-- ⚡ **TanStack Start** - Full-stack React framework
+- ⚡ **TanStack Start** - Full-stack React framework with SSR
+- 🧩 **Ready to Extend** - Clean architecture, easy to customize
 
 ## 📚 Documentation
 
@@ -39,12 +42,21 @@ pnpm dev
 
 **Important**: You must configure `.env.local` with your NeonDB and Google OAuth credentials before running `pnpm db:push`. See [QUICKSTART.md](./QUICKSTART.md) for step-by-step instructions.
 
+## 💡 Perfect For
+
+This starter template is ideal for:
+- SaaS applications requiring invite-based onboarding
+- Internal tools with controlled access
+- MVP projects needing quick authentication setup
+- Learning TanStack Start with a real-world example
+- Any project requiring Google OAuth + user management
+
 ## 🎯 How It Works
 
 1. **First User** signs up with Google → automatically becomes admin
 2. **Admin** generates invite codes for specific email addresses
 3. **New Users** receive invite link → sign up with Google
-4. **Everyone** gets access to the dashboard
+4. **Build Your App** - Extend the dashboard with your features!
 
 ## 🛠️ Tech Stack
 
@@ -85,9 +97,21 @@ Make sure `http://localhost:3000/api/auth/callback/google` is added in Google Cl
 ### "Invite code required"
 This is normal for non-admin users. Generate an invite code from the admin dashboard.
 
+## 🔧 Customizing for Your Project
+
+This template provides a solid foundation. Here's how to extend it:
+
+1. **Add Your Features** - Build on top of the dashboard
+2. **Modify Schema** - Update `src/db/schema.ts` with your tables
+3. **Create Routes** - Add new routes in `src/routes/`
+4. **Server Functions** - Add business logic in `src/lib/server-functions.ts`
+5. **Components** - Build reusable UI in `src/components/`
+
+The authentication and invite system are ready to go - focus on building your unique features!
+
 ## 📄 License
 
-Private project - All rights reserved
+MIT License - Use this template for any project!
 
 
 ## T3Env

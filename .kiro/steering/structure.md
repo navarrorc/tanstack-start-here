@@ -4,17 +4,21 @@
 
 ```
 src/
-├── components/          # Reusable React components
-├── data/               # Static data and seed files
+├── components/          # Reusable React components (add your components here)
 ├── db/                 # Database configuration and schema
 ├── integrations/       # Third-party integrations (TanStack Query)
 ├── lib/                # Utility functions and shared logic
+│   ├── auth.ts        # Authentication utilities
+│   ├── server-functions.ts  # Server-side functions
+│   └── utils.ts       # General utilities
 ├── routes/             # File-based routing (TanStack Router)
 │   ├── api/           # API endpoints
 │   │   ├── auth/      # Authentication endpoints
 │   │   └── invites/   # Invite management endpoints
-│   ├── demo/          # Demo pages (can be deleted)
-│   └── __root.tsx     # Root layout component
+│   ├── __root.tsx     # Root layout component
+│   ├── index.tsx      # Landing page
+│   ├── login.tsx      # Login page
+│   └── dashboard.tsx  # Dashboard (customize this!)
 └── styles.css          # Global styles
 ```
 
