@@ -40,7 +40,7 @@ pnpm db:push
 pnpm dev
 ```
 
-**Important**: You must configure `.env.local` with your NeonDB and Google OAuth credentials before running `pnpm db:push`. See [QUICKSTART.md](./QUICKSTART.md) for step-by-step instructions.
+**Important**: You must configure `.env.local` with your NeonDB and Google OAuth credentials before running `pnpm db:push`. See [QUICKSTART.md](./docs/QUICKSTART.md) for step-by-step instructions.
 
 ## 💡 Perfect For
 
@@ -89,7 +89,7 @@ pnpm db:studio    # Open Drizzle Studio
 ## 🐛 Troubleshooting
 
 ### "Either connection url or host, database are required"
-You need to add your real NeonDB connection string to `.env.local`. See [QUICKSTART.md](./QUICKSTART.md).
+You need to add your real NeonDB connection string to `.env.local`. See [QUICKSTART.md](./docs/QUICKSTART.md).
 
 ### "OAuth error" or "Redirect URI mismatch"
 Make sure `http://localhost:3000/api/auth/callback/google` is added in Google Cloud Console.
