@@ -13,6 +13,9 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as InviteEntryRouteImport } from './routes/invite-entry'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as DashboardUsersRouteImport } from './routes/dashboard/users'
+import { Route as DashboardInvitesRouteImport } from './routes/dashboard/invites'
 import { Route as ApiAuthValidateInviteRouteImport } from './routes/api/auth/validate-invite'
 import { Route as ApiAuthMeRouteImport } from './routes/api/auth/me'
 import { Route as ApiAuthLogoutRouteImport } from './routes/api/auth/logout'
@@ -38,6 +41,21 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardUsersRoute = DashboardUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardInvitesRoute = DashboardInvitesRouteImport.update({
+  id: '/invites',
+  path: '/invites',
+  getParentRoute: () => DashboardRoute,
 } as any)
 const ApiAuthValidateInviteRoute = ApiAuthValidateInviteRouteImport.update({
   id: '/api/auth/validate-invite',
@@ -67,9 +85,12 @@ const ApiAuthCallbackGoogleRoute = ApiAuthCallbackGoogleRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/invite-entry': typeof InviteEntryRoute
   '/login': typeof LoginRoute
+  '/dashboard/invites': typeof DashboardInvitesRoute
+  '/dashboard/users': typeof DashboardUsersRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
   '/api/auth/me': typeof ApiAuthMeRoute
@@ -78,9 +99,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
   '/invite-entry': typeof InviteEntryRoute
   '/login': typeof LoginRoute
+  '/dashboard/invites': typeof DashboardInvitesRoute
+  '/dashboard/users': typeof DashboardUsersRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
   '/api/auth/me': typeof ApiAuthMeRoute
@@ -90,9 +113,12 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/invite-entry': typeof InviteEntryRoute
   '/login': typeof LoginRoute
+  '/dashboard/invites': typeof DashboardInvitesRoute
+  '/dashboard/users': typeof DashboardUsersRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
   '/api/auth/me': typeof ApiAuthMeRoute
@@ -106,6 +132,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/invite-entry'
     | '/login'
+    | '/dashboard/invites'
+    | '/dashboard/users'
+    | '/dashboard/'
     | '/api/auth/login'
     | '/api/auth/logout'
     | '/api/auth/me'
@@ -114,9 +143,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboard'
     | '/invite-entry'
     | '/login'
+    | '/dashboard/invites'
+    | '/dashboard/users'
+    | '/dashboard'
     | '/api/auth/login'
     | '/api/auth/logout'
     | '/api/auth/me'
@@ -128,6 +159,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/invite-entry'
     | '/login'
+    | '/dashboard/invites'
+    | '/dashboard/users'
+    | '/dashboard/'
     | '/api/auth/login'
     | '/api/auth/logout'
     | '/api/auth/me'
@@ -137,7 +171,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   InviteEntryRoute: typeof InviteEntryRoute
   LoginRoute: typeof LoginRoute
   ApiAuthLoginRoute: typeof ApiAuthLoginRoute
@@ -177,6 +211,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/users': {
+      id: '/dashboard/users'
+      path: '/users'
+      fullPath: '/dashboard/users'
+      preLoaderRoute: typeof DashboardUsersRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/invites': {
+      id: '/dashboard/invites'
+      path: '/invites'
+      fullPath: '/dashboard/invites'
+      preLoaderRoute: typeof DashboardInvitesRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/api/auth/validate-invite': {
       id: '/api/auth/validate-invite'
       path: '/api/auth/validate-invite'
@@ -215,9 +270,25 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DashboardRouteChildren {
+  DashboardInvitesRoute: typeof DashboardInvitesRoute
+  DashboardUsersRoute: typeof DashboardUsersRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardInvitesRoute: DashboardInvitesRoute,
+  DashboardUsersRoute: DashboardUsersRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   InviteEntryRoute: InviteEntryRoute,
   LoginRoute: LoginRoute,
   ApiAuthLoginRoute: ApiAuthLoginRoute,

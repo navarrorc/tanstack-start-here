@@ -67,11 +67,12 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 function RootDocument({ children }: { children: React.ReactNode }) {
   const routerState = useRouterState()
   
-  // Hide header on home, login and invite-entry pages for cleaner aesthetic
+  // Hide header on home, login, invite-entry, and all dashboard pages
   const hideHeader = 
     routerState.location.pathname === '/' ||
     routerState.location.pathname === '/login' || 
-    routerState.location.pathname === '/invite-entry'
+    routerState.location.pathname === '/invite-entry' ||
+    routerState.location.pathname.startsWith('/dashboard')
   
   return (
     <html lang="en">
