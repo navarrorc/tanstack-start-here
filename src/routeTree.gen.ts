@@ -8,12 +8,16 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
+
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as InviteEntryRouteImport } from './routes/invite-entry'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MarketplaceIndexRouteImport } from './routes/marketplace/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
+import { Route as MarketplaceRouteRouteImport } from './routes/marketplace/_route'
 import { Route as DashboardUsersRouteImport } from './routes/dashboard/users'
 import { Route as DashboardInvitesRouteImport } from './routes/dashboard/invites'
 import { Route as ApiAuthValidateInviteRouteImport } from './routes/api/auth/validate-invite'
@@ -22,6 +26,13 @@ import { Route as ApiAuthLogoutRouteImport } from './routes/api/auth/logout'
 import { Route as ApiAuthLoginRouteImport } from './routes/api/auth/login'
 import { Route as ApiAuthCallbackGoogleRouteImport } from './routes/api/auth/callback/google'
 
+const MarketplaceRouteImport = createFileRoute('/marketplace')()
+
+const MarketplaceRoute = MarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -42,10 +53,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MarketplaceIndexRoute = MarketplaceIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MarketplaceRoute,
+} as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardRoute,
+} as any)
+const MarketplaceRouteRoute = MarketplaceRouteRouteImport.update({
+  id: '/_route',
+  getParentRoute: () => MarketplaceRoute,
 } as any)
 const DashboardUsersRoute = DashboardUsersRouteImport.update({
   id: '/users',
@@ -90,7 +110,9 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/dashboard/invites': typeof DashboardInvitesRoute
   '/dashboard/users': typeof DashboardUsersRoute
+  '/marketplace': typeof MarketplaceRouteRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/marketplace/': typeof MarketplaceIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
   '/api/auth/me': typeof ApiAuthMeRoute
@@ -103,6 +125,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/dashboard/invites': typeof DashboardInvitesRoute
   '/dashboard/users': typeof DashboardUsersRoute
+  '/marketplace': typeof MarketplaceIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
@@ -118,7 +141,10 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/dashboard/invites': typeof DashboardInvitesRoute
   '/dashboard/users': typeof DashboardUsersRoute
+  '/marketplace': typeof MarketplaceRouteWithChildren
+  '/marketplace/_route': typeof MarketplaceRouteRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/marketplace/': typeof MarketplaceIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
   '/api/auth/me': typeof ApiAuthMeRoute
@@ -134,7 +160,9 @@ export interface FileRouteTypes {
     | '/login'
     | '/dashboard/invites'
     | '/dashboard/users'
+    | '/marketplace'
     | '/dashboard/'
+    | '/marketplace/'
     | '/api/auth/login'
     | '/api/auth/logout'
     | '/api/auth/me'
@@ -147,6 +175,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/dashboard/invites'
     | '/dashboard/users'
+    | '/marketplace'
     | '/dashboard'
     | '/api/auth/login'
     | '/api/auth/logout'
@@ -161,7 +190,10 @@ export interface FileRouteTypes {
     | '/login'
     | '/dashboard/invites'
     | '/dashboard/users'
+    | '/marketplace'
+    | '/marketplace/_route'
     | '/dashboard/'
+    | '/marketplace/'
     | '/api/auth/login'
     | '/api/auth/logout'
     | '/api/auth/me'
@@ -174,6 +206,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRouteWithChildren
   InviteEntryRoute: typeof InviteEntryRoute
   LoginRoute: typeof LoginRoute
+  MarketplaceRoute: typeof MarketplaceRouteWithChildren
   ApiAuthLoginRoute: typeof ApiAuthLoginRoute
   ApiAuthLogoutRoute: typeof ApiAuthLogoutRoute
   ApiAuthMeRoute: typeof ApiAuthMeRoute
@@ -183,6 +216,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/marketplace': {
+      id: '/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof MarketplaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -211,12 +251,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/marketplace/': {
+      id: '/marketplace/'
+      path: '/'
+      fullPath: '/marketplace/'
+      preLoaderRoute: typeof MarketplaceIndexRouteImport
+      parentRoute: typeof MarketplaceRoute
+    }
     '/dashboard/': {
       id: '/dashboard/'
       path: '/'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
+    }
+    '/marketplace/_route': {
+      id: '/marketplace/_route'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof MarketplaceRouteRouteImport
+      parentRoute: typeof MarketplaceRoute
     }
     '/dashboard/users': {
       id: '/dashboard/users'
@@ -286,11 +340,26 @@ const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
   DashboardRouteChildren,
 )
 
+interface MarketplaceRouteChildren {
+  MarketplaceRouteRoute: typeof MarketplaceRouteRoute
+  MarketplaceIndexRoute: typeof MarketplaceIndexRoute
+}
+
+const MarketplaceRouteChildren: MarketplaceRouteChildren = {
+  MarketplaceRouteRoute: MarketplaceRouteRoute,
+  MarketplaceIndexRoute: MarketplaceIndexRoute,
+}
+
+const MarketplaceRouteWithChildren = MarketplaceRoute._addFileChildren(
+  MarketplaceRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRouteWithChildren,
   InviteEntryRoute: InviteEntryRoute,
   LoginRoute: LoginRoute,
+  MarketplaceRoute: MarketplaceRouteWithChildren,
   ApiAuthLoginRoute: ApiAuthLoginRoute,
   ApiAuthLogoutRoute: ApiAuthLogoutRoute,
   ApiAuthMeRoute: ApiAuthMeRoute,

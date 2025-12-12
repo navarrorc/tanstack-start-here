@@ -65,14 +65,14 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
-  const routerState = useRouterState()
+  //const routerState = useRouterState()
   
   // Hide header on home, login, invite-entry, and all dashboard pages
-  const hideHeader = 
-    routerState.location.pathname === '/' ||
-    routerState.location.pathname === '/login' || 
-    routerState.location.pathname === '/invite-entry' ||
-    routerState.location.pathname.startsWith('/dashboard')
+  // const hideHeader = 
+  //   routerState.location.pathname === '/' ||
+  //   routerState.location.pathname === '/login' || 
+  //   routerState.location.pathname === '/invite-entry' ||
+  //   routerState.location.pathname.startsWith('/dashboard')
   
   return (
     <html lang="en">
@@ -81,7 +81,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <ToastProvider>
-          {!hideHeader && <Header />}
+          {/* {!hideHeader && <Header />} */}
           {children}
           <TanStackDevtools
             config={{
