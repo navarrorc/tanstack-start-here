@@ -25,7 +25,7 @@ export default function Header() {
         
         <button
           onClick={() => setIsOpen(true)}
-          className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
+          className="p-2 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
           aria-label="Open menu"
         >
           <Menu size={20} className="text-gray-600" strokeWidth={1.5} />
@@ -41,7 +41,7 @@ export default function Header() {
           <h2 className="text-sm font-medium text-gray-900">Menu</h2>
           <button
             onClick={() => setIsOpen(false)}
-            className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
+            className="p-2 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer"
             aria-label="Close menu"
           >
             <X size={20} className="text-gray-600" strokeWidth={1.5} />
@@ -52,7 +52,7 @@ export default function Header() {
           <Link
             to="/"
             onClick={() => setIsOpen(false)}
-            className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors mb-1 text-gray-700"
+            className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-50 transition-colors mb-1 text-gray-700 cursor-pointer"
             activeProps={{
               className:
                 'flex items-center gap-3 px-4 py-3 rounded-lg bg-gray-900 text-white transition-colors mb-1',
@@ -67,7 +67,7 @@ export default function Header() {
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/20 z-40 backdrop-blur-sm"
+          className="fixed inset-0 bg-black/20 z-40 backdrop-blur-sm cursor-pointer"
           onClick={() => setIsOpen(false)}
         />
       )}

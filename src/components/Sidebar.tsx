@@ -27,8 +27,8 @@ export function Sidebar({ user }: SidebarProps) {
     <>
       {/* Mobile backdrop overlay */}
       {sidebarExpanded && (
-        <div 
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden cursor-pointer"
           onClick={() => setSidebarExpanded(false)}
         />
       )}
@@ -61,11 +61,10 @@ export function Sidebar({ user }: SidebarProps) {
 
       {/* Navigation */}
       <nav className="flex flex-col gap-1 px-2">
-        <Button
+       <Button
           variant="ghost"
           onClick={() => {
             navigate({ to: '/dashboard' })
-            setSidebarExpanded(false)
           }}
           className={`${sidebarExpanded ? 'justify-start' : 'justify-center'} h-10 ${isActive('/dashboard') ? 'bg-accent text-accent-foreground' : ''}`}
         >
@@ -80,7 +79,6 @@ export function Sidebar({ user }: SidebarProps) {
               variant="ghost"
               onClick={() => {
                 navigate({ to: '/dashboard/users' })
-                setSidebarExpanded(false)
               }}
               className={`${sidebarExpanded ? 'justify-start' : 'justify-center'} h-10 ${isActive('/dashboard/users') ? 'bg-accent text-accent-foreground' : ''}`}
             >
@@ -91,7 +89,6 @@ export function Sidebar({ user }: SidebarProps) {
               variant="ghost"
               onClick={() => {
                 navigate({ to: '/dashboard/invites' })
-                setSidebarExpanded(false)
               }}
               className={`${sidebarExpanded ? 'justify-start' : 'justify-center'} h-10 ${isActive('/dashboard/invites') ? 'bg-accent text-accent-foreground' : ''}`}
             >

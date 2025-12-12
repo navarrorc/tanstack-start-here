@@ -15,7 +15,7 @@ function DashboardPage() {
 
       <Card>
         <CardContent className="pt-6 text-center">
-          <h2 className="text-4xl font-semibold mb-2">Hello World</h2>
+          <h2 className="text-4xl font-semibold mb-2">Hola Mundo</h2>
           <p className="text-muted-foreground">Welcome to your new TanStack Start application!</p>
         </CardContent>
       </Card>

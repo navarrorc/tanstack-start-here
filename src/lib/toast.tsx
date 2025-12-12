@@ -58,7 +58,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             <p className="text-sm font-medium flex-1">{toast.message}</p>
             <button
               onClick={() => dismissToast(toast.id)}
-              className="hover:opacity-70 transition-opacity"
+              className="hover:opacity-70 transition-opacity cursor-pointer"
             >
               <X size={16} strokeWidth={2} />
             </button>
