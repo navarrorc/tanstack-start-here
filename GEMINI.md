@@ -4,6 +4,8 @@
 
 This is a production-ready starter template for building full-stack applications using **TanStack Start**. It implements a complete authentication system with Google OAuth and an invite-only user management flow. The architecture leverages modern standards for React full-stack development, utilizing the TanStack ecosystem.
 
+**IMPORTANT**: Refer to `.kilocode/rules/` for detailed coding standards, routing conventions, and changelog guidelines. Always check these rules before implementing major changes.
+
 ### Key Technologies
 *   **Framework:** TanStack Start (React + SSR + Server Functions)
 *   **Routing:** TanStack Router (File-based routing)

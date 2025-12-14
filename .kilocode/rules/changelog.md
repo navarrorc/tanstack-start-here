@@ -1,9 +1,28 @@
-# After completion of a bug fix or new feature, please add to the docs/CHANGELOG.md
+# Changelog Standards
 
-### For example:
+**Rule**: Upon completion of any bug fix, refactor, or new feature, you **MUST** update `docs/CHANGELOG.md`.
 
-    # Changelog
+## Workflow
+1.  Complete the coding task.
+2.  Before marking the task as "Finished", append a new entry to `docs/CHANGELOG.md`.
+3.  Use the current date (YYYY-MM-DD) as the header if it doesn't exist.
 
-    ## 2025-12-12
+## Format
+```markdown
+## YYYY-MM-DD
 
-    - Dashboard sidebar no longer auto-collapses when selecting navigation items; state only changes via the menu toggle or mobile backdrop click. See `src/components/Sidebar.tsx`.
+- **[Category]** Description of change. (Reference files if helpful).
+```
+
+### Categories
+-   **[Feature]**: New capabilities.
+-   **[Fix]**: Bug fixes.
+-   **[Refactor]**: Code restructuring (like the route changes).
+-   **[Docs]**: Documentation updates.
+
+## Example
+```markdown
+## 2025-12-14
+
+- **[Refactor]** Converted `dashboard` and `marketplace` routes to use standard `route.tsx` layouts, renaming from `_route.tsx` to fix context inheritance and 404 errors.
+```

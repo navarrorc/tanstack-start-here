@@ -3,16 +3,16 @@ import { Sidebar } from '@/components/Sidebar'
 
 export const Route = createFileRoute('/dashboard')({
   beforeLoad: async () => {
-    const { getCurrentUser } = await import('../lib/server-functions')
+    const { getCurrentUser } = await import('../../lib/server-functions')
     const user = await getCurrentUser()
-    
+
     if (!user) {
       throw redirect({ to: '/login' })
     }
-    
+
     return { user }
   },
-  
+
   component: DashboardLayout,
 })
 
